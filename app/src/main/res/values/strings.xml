@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CV310</string>
+    <string name="detail_activity_permission_camera_title">Разрешение на доступ к камере</string>
+    <string name="detail_activity_permission_camera_message">
+        Для поиска триггеров приложению необходим доступ к Вашей камере.
+    Вы не сможете продолжить работу без этого разрешения!</string>
+    <string name="detail_activity_permission_camera_denied">Включите разрешение на доступ к камере в настройках!</string>
+</resources>
