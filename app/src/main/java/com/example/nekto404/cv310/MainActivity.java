@@ -20,18 +20,20 @@ import android.view.WindowManager;
 
 import android.content.DialogInterface;
 import android.os.Build;
+/*
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AlertDialog;*/
 import android.view.SurfaceView;
+import android.widget.TextView;
 import android.widget.Toast;
-
+/*
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
-
-@RuntimePermissions
+import permissions.dispatcher.RuntimePermissions;*/
+/*
+@RuntimePermissions*/
 public class MainActivity extends Activity implements CvCameraViewListener2 {
 
     private CameraBridgeViewBase mOpenCvCameraView;
@@ -46,6 +48,9 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
     private MenuItem mItemPreviewGray;
     private MenuItem mItemPreviewCanny;
     private MenuItem mItemPreviewFeatures;
+
+    TextView tv;
+    /*
     @NeedsPermission(Manifest.permission.CAMERA)
     void showCamera(){
         Toast.makeText(this,
@@ -75,7 +80,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         openApplicationSettings();
     }
 
-
+*/
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -113,24 +118,26 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         }
 
         return true;
-    }
+    }/*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            MainActivityPermissionsDispatcher.showCameraWithCheck(this);
+            //MainActivityPermissionsDispatcher.showCameraWithCheck(this);
         }
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.view);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
+        tv =(TextView) findViewById(R.id.text1);
+        tv.setText("test");
     }
 
     @Override
@@ -192,4 +199,10 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
     }
 
     private void openApplicationSettings() {    }
+
+    public native String  stringFromJNI();
+
+    static {
+        System.loadLibrary("hello-jni");
+    }
 }
